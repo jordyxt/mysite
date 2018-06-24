@@ -1,1 +1,1 @@
-web: gunicorn infodeck.apps:infodeck --log-file - 
+web: gunicorn infodeck.apps:InfodeckConfig --log-file - 
