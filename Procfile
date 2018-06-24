@@ -1,1 +1,1 @@
-web: gunicorn infodeck -b 0.0.0.0:$PORT
+web: gunicorn mysite:infodeck -b 0.0.0.0:$PORT
