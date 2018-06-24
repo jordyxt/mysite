@@ -1,1 +1,1 @@
-web: gunicorn infodeck.wsgi 
+web: gunicorn infodeck.wsgi:application --log-file - 
