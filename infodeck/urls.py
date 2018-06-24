@@ -15,4 +15,3 @@ urlpatterns = [
  url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), 
  url(r'^api/deck/(?P<pk>[0-9]+)/$', views.deck_detail),
 ]
-sds
