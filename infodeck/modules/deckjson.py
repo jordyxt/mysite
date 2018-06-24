@@ -88,24 +88,27 @@ def buscadecks(deck):
                 else:
                     slideitem['attached']=False
             else:
-                slideitem ['attached']=True
-                slideitem['origin']=data['revisions'][0]['parent']
-                parent_url = 'https://deckservice.slidewiki.org/slide/'+str(data['revisions'][0]['parent']['id'])
-                parent_resp = requests.get(url=parent_url)
-                parent_data = parent_resp.json()
-                if data['revisions'][0]['parent']['revision']==len(parent_data['revisions']):
-                    slideitem['updated']=True
-                else:
-                    html=htmldiff(data['revisions'][-1]['content'],parent_data['revisions'][-1]['content'])
-                    parsed_html = BeautifulSoup(html,'lxml')
-                    insert=parsed_html.find_all('ins')
-                    delete=parsed_html.find_all('del')
-                    if(len(insert)==0 and len (delete)==0):
+                if data['revisions'][0]['parent']['id']==None:
+                    slideitem ['attached']=False
+                else:   
+                    slideitem ['attached']=True
+                    slideitem['origin']=data['revisions'][0]['parent']
+                    parent_url = 'https://deckservice.slidewiki.org/slide/'+str(data['revisions'][0]['parent']['id'])
+                    parent_resp = requests.get(url=parent_url)
+                    parent_data = parent_resp.json()
+                    if data['revisions'][0]['parent']['revision']==len(parent_data['revisions']):
                         slideitem['updated']=True
                     else:
-                        #existe version mas actual de la slide
-                        slideitem['updated']=False
-                        slideitem['updated version'] = parent_data['revisions'][-1]['id']         
+                        html=htmldiff(data['revisions'][-1]['content'],parent_data['revisions'][-1]['content'])
+                        parsed_html = BeautifulSoup(html,'lxml')
+                        insert=parsed_html.find_all('ins')
+                        delete=parsed_html.find_all('del')
+                        if(len(insert)==0 and len (delete)==0):
+                            slideitem['updated']=True
+                        else:
+                            #existe version mas actual de la slide
+                            slideitem['updated']=False
+                            slideitem['updated version'] = parent_data['revisions'][-1]['id']         
         else:
             #print(slide['ref']['id'])
             slideitem.update(buscadecks(str(slide['ref']['id'])+'-'+str(slide['ref']['revision'])))
@@ -118,4 +121,5 @@ def buscadecks(deck):
 #print(buscadecks(112619))
 #print(buscadecks(112915))
 #print(buscadecks(112918))
+print(buscadecks(550))
 #buscadecks(106865)
