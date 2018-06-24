@@ -117,5 +117,5 @@ def buscadecks(deck):
 #print(buscadecks(112866))
 #print(buscadecks(112619))
 #print(buscadecks(112915))
-print(buscadecks(112918))
+#print(buscadecks(112918))
 #buscadecks(106865)
