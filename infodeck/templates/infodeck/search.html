@@ -1,0 +1,26 @@
+{% extends "infodeck/header.html" %}
+{% block title %}InfoDeck - Search{% endblock %}
+{% load staticfiles %}
+{% block customcss %}
+<link href="{% static 'infodeck/css/search.css' %}" rel="stylesheet" type="text/css"></link>  
+{% endblock %}
+{% block content %}
+<main role="main" class="container">
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+<div style=" border-radius:25px;margin-top:50px; padding-top:1px; padding-bottom:10px;">
+    <div style="margin-left:10px; margin-right:10px;">
+      <div class="page-header">
+        <h1>Search Results...</h1>
+      </div>
+      <p>For the deck with the id {{content}} : </p>
+      {% block content_result %}
+        {% include "infodeck/searchloop.html" %}  
+      {% endblock%}
+    </div>
+  </div>
+</div>
+</main>
+  {% endblock %}
+{% block customjs %}
+<script src="{% static 'infodeck/js/search.js' %}" type="text/javascript"></script>
+{% endblock %}
