@@ -58,9 +58,11 @@ def about(request):
 def search(request):  
     template =loader.get_template("infodeck/search.html")
     pA = request.GET.get('deckId')
-    #resultado=buscadecks(pA)
+    response=buscadecks(pA)
+    """
     try:
         response = requests.get('https://infodeck.herokuapp.com/api/deck/'+pA).json()
     except ConnectionError:
         response={}
+    """
     return HttpResponse(template.render({'content':pA ,'content_result':response}))
