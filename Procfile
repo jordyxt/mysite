@@ -1,1 +1,1 @@
-web: gunicorn infodeck.wsgi -b 0.0.0.0:$PORT
+web: gunicorn infodeck:app -b 0.0.0.0:$PORT
