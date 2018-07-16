@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['infodeck.herokuapp.com', '.yourdomain.com']
 
-
 # Application definition
 
 INSTALLED_APPS = [
