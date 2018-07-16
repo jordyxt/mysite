@@ -1,12 +1,68 @@
 {% extends "infodeck/header.html" %}
 {% block title %}InfoDeck - About{% endblock %}
+{% load staticfiles %}
 {% block content %}
-<div style=" border-radius:25px;margin-top:50px; padding-top:1px; padding-bottom:10px;">
-  <div style="margin-left:10px; margin-right:10px;">
-    <div class="page-header">
-      <h1>About InfoDeck</h1>
-    </div>
-    <p class="ptext">InfoDeck es una aplicacion web para poder conocer los ultimos cambio que tienen tus diapositivas de <a target="_blank" href="https://slidewiki.org/">slidewiki</a>.</p>
-  </div>
-</div>
+<main role="main" class="container">
+  <div class="my-3 p-3 bg-white rounded box-shadow">
+    <div style=" border-radius:25px;margin-top:50px; padding-top:1px; padding-bottom:10px;">
+      <div style="margin-left:10px; margin-right:10px;">
+        <div class="page-header">
+          <h1>About InfoDeck</h1>
+        </div>
+        <p class="ptext">InfoDeck es una aplicacion web para poder conocer los ultimos cambio que tienen tus diapositivas de <a target="_blank" href="https://slidewiki.org/">slideWiki</a>.
+          Permitiendo al usuario realizar consultas de sus decks de forma simple y organizada, para así reducir el tiempo que este perdería en buscar slide por slide posibles cambios en las slides de donde se ha reutilizado.</p>
+        <h2>Usos</h2>
+        <p class="ptext">Los usos de esta aplicacion se pueden ver en el buscador.</p>
+        <div class="well">
+        <a target="_blank" href="http://infodeck.herokuapp.com/">http://infodeck.herokuapp.com/</a>
+        </div>
+        <p>La cual tiene la siguiente apariencia:</p>
+        <div class="container"style="padding-left: 0px;  padding-right: 0px;width:100%;height:100%;"><div class="col-md-6" style="padding-left: 0px;  padding-right: 0px;">
+        <img src="{% static 'infodeck/img/index.png' %}" class="img-fluid" alt="Responsive image" style="width:100%;height:100%;border:1px solid #7ee705">
+        </div>
+        </div>
+        <br>
+        <p>La busqueda se tiene que realizar por id, la cual podemos encontrar en la url de nuestro deck.</p>
+        <div class="well">
+          https://slidewiki.org/deck/{id}/...
+          </div>
+        <p>Y el resultado sera una lista con información del contenido del deck.</p>
+        <div class="container"style="padding-left: 0px;  padding-right: 0px;width:100%;height:100%;"><div class="col-md-6" style="padding-left: 0px;  padding-right: 0px;">
+          <img src="{% static 'infodeck/img/search.png' %}" class="img-fluid" alt="Responsive image" style="width:100%;height:100%;border:1px solid #7ee705">
+        </div>
+        </div>
+        <br>
+        <p>Esta aplicacion ademas hace uso de una API que hemos creado desde los datos obtenido por la API de slideWiki.Esta API que hemos creado consta de una sola operación de tipo GET,
+           la cual nos dara mas informacion acerca del contenido del deck. Para poder acceder a esta solo hace falta hacer una llamada con la id del deck.
+        </p>
+        <div class="well">
+          http://infodeck.herokuapp.com/api/deck/{id}
+        </div>
+        <h2>API</h2>
+        <p>En esta sección se mostrara el uso de la API.</p>
+        <h4>Lista de contenido del deck</h4>
+        <p>Obtención de la lista del contenido del deck con la información sobre procedenciade las slides, asi comosi estas estan actualizadas o no. </p>
+        <div class="well">
+            <div class="row">
+                <div class="col-md-1 col-sm-1">
+                    <label for="input1">Deck id:</label>
+                  </div>
+                <div class="col-md-2 col-sm-3">
+                    <input type="text" class="form-control" placeholder="id" id="deckId">
+               </div>
+               <div class="col-md-1 col-sm-2">
+                  <button type="button" class="btn btn-primary btn-block" id="target">Go</button>
+                </div>
+                </div>
+                <br>
+            <pre><code id="target2"></code></pre>
+          </div>
+          <br><br><br>
+      </div>
+      </div>
+      </div>
+    </main>
+    {% endblock %}
+    {% block customjs %}
+<script src="{% static 'infodeck/js/about.js' %}" type="text/javascript"></script>
 {% endblock %}
